@@ -2031,7 +2031,8 @@ public class DeepLearningTest extends TestUtil {
       dl = new DeepLearning(parms).trainModel().get();
 
       Assert.assertEquals(0.95176, ((ModelMetricsBinomial)dl._output._training_metrics)._auc._auc,1e-4);
-      Assert.assertEquals(0.94829, ((ModelMetricsBinomial)dl._output._validation_metrics)._auc._auc,1e-3);
+      // changing from 1e-3 to 1e-2 since SSL enabled cluster seems to converge at a different time
+      Assert.assertEquals(0.94829, ((ModelMetricsBinomial)dl._output._validation_metrics)._auc._auc,1e-2);
       Assert.assertEquals(0.9128, ((ModelMetricsBinomial)dl._output._cross_validation_metrics)._auc._auc,1e-2);
       Assert.assertEquals(0.9200, Double.parseDouble((String)(dl._output._cross_validation_metrics_summary).get(1,0)), 1e-2);
 
